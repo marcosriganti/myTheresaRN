@@ -4,6 +4,8 @@ import {
     Image,
     useColorScheme,
     View,
+    Touchable,
+    Pressable
 } from 'react-native';
 import styled from 'styled-components';
 import {
@@ -27,7 +29,7 @@ const ItemTitle = styled(CarouselTitle)`
     color: #fff;
     text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
 `;
-const CarouselItem = styled(View) <{isDark?: boolean;}>`
+const CarouselItem = styled(Pressable) <{isDark?: boolean;}>`
     border-top-right-radius: 8px;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;

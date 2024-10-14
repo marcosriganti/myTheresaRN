@@ -20,4 +20,5 @@ export type Record = {
 export interface CarouselProps {
     title: string;
     data: Record[];
+    onPress: (item: Record) => void;
 }

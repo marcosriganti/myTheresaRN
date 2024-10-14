@@ -8,14 +8,14 @@ import {
 import {CarouselItem, CarouselTitle, ItemTitle} from './styles';
 import {CarouselProps} from './types';
 
-const Carousel = ({title, data}: CarouselProps) => {
+const Carousel = ({title, data, onPress}: CarouselProps) => {
     const isDarkMode = useColorScheme() === 'dark';
     return <View>
         <CarouselTitle>{title}</CarouselTitle>
         <View>
             <ScrollView horizontal={true}>
                 {data.map((item) => {
-                    return <CarouselItem isDark={isDarkMode} key={item.id}>
+                    return <CarouselItem isDark={isDarkMode} key={item.id} onPress={() => onPress(item)}>
                         <Image source={{
                             uri: `https://image.tmdb.org/t/p/w300${item.poster_path}`,
                         }} width={200} height={200} style={{borderRadius: 8, }} />
