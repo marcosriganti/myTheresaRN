@@ -2,9 +2,6 @@ import React from 'react';
 import {
     SafeAreaView,
     ScrollView,
-    StyleSheet,
-    StatusBar,
-    Text,
     useColorScheme,
     View,
 } from 'react-native';
@@ -18,6 +15,23 @@ import {Record} from '../../components/Carousel/types';
 import styled from 'styled-components';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../types';
+
+
+const categories = [
+    {
+        "id": 16,
+        "name": "Animation"
+    },
+    {
+        "id": 878,
+        "name": "Science Fiction"
+    },
+    {
+        "id": 53,
+        "name": "Thriller"
+    },
+
+];
 
 const data: {
     "page": number,
@@ -467,7 +481,6 @@ const HomeScreen = (props: Props) => {
     const backgroundStyle = {
         backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
         paddingVertical: 16
-
     };
     const handlePress = (record: Record) => navigation.navigate('Details', record);
 
@@ -479,14 +492,17 @@ const HomeScreen = (props: Props) => {
             {/* Pending  */}
             <CarouselGrid>
                 {/* Trending TV  */}
-                <Carousel
-                    title="Trending Tv"
-                    data={data.results}
-                    onPress={handlePress} />
+                {categories.map((category) => {
+                    return <Carousel
+                        title={`Films of ${category.name}`}
+                        data={data.results}
+                        onPress={handlePress} />;
+                })}
+
                 {/* Trendy Movies  */}
-                <Carousel title='Trending Movies' data={data.results} onPress={handlePress} />
+                {/* <Carousel title='Trending Movies' data={data.results} onPress={handlePress} /> */}
                 {/* On Air Today  */}
-                <Carousel title='On Air Today' data={data.results} onPress={handlePress} />
+                {/* <Carousel title='On Air Today' data={data.results} onPress={handlePress} /> */}
             </CarouselGrid>
         </ScrollView>
     </SafeAreaView>);

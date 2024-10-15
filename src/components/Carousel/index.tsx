@@ -5,7 +5,7 @@ import {
     useColorScheme,
     View,
 } from 'react-native';
-import {CarouselItem, CarouselTitle, ItemTitle} from './styles';
+import {CarouselItem, CarouselTitle, ItemTitle, StyledShadow} from './styles';
 import {CarouselProps} from './types';
 
 const Carousel = ({title, data, onPress}: CarouselProps) => {
@@ -15,12 +15,14 @@ const Carousel = ({title, data, onPress}: CarouselProps) => {
         <View>
             <ScrollView horizontal={true}>
                 {data.map((item) => {
-                    return <CarouselItem isDark={isDarkMode} key={item.id} onPress={() => onPress(item)}>
-                        <Image source={{
-                            uri: `https://image.tmdb.org/t/p/w300${item.poster_path}`,
-                        }} width={200} height={200} style={{borderRadius: 8, }} />
-                        <ItemTitle>{item.name || item.original_title}</ItemTitle>
-                    </CarouselItem>;
+                    return <StyledShadow>
+                        <CarouselItem isDark={isDarkMode} key={item.id} onPress={() => onPress(item)}>
+                            <ItemTitle>{item.name || item.original_title}</ItemTitle>
+                            <Image source={{
+                                uri: `https://image.tmdb.org/t/p/w300${item.poster_path}`,
+                            }} width={200} height={350} style={{borderRadius: 8, resizeMode: 'cover'}} />
+                        </CarouselItem>
+                    </StyledShadow>;
                 })}
             </ScrollView>
         </View>
