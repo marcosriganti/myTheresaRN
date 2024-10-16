@@ -6,16 +6,14 @@ import {
     View,
 } from 'react-native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
-
 import {
     Colors,
 } from 'react-native/Libraries/NewAppScreen';
 import Carousel from '../../components/Carousel';
 import {Record} from '../../components/Carousel/types';
 import styled from 'styled-components';
-import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../types';
-
+type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
 const categories = [
     {
@@ -468,13 +466,6 @@ const CarouselGrid = styled(View)`
 `;
 
 
-
-type HomeScreenProps = NativeStackNavigationProp<
-    RootStackParamList,
-    'Home'
->;
-
-type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
 const HomeScreen = (props: Props) => {
     const {navigation} = props;
     const isDarkMode = useColorScheme() === 'dark';
@@ -488,21 +479,15 @@ const HomeScreen = (props: Props) => {
         <ScrollView
             contentInsetAdjustmentBehavior="automatic"
             style={backgroundStyle}>
-            {/* Header */}
-            {/* Pending  */}
             <CarouselGrid>
                 {/* Trending TV  */}
                 {categories.map((category) => {
                     return <Carousel
                         title={`Films of ${category.name}`}
                         data={data.results}
+                        key={`category-${category.id}`}
                         onPress={handlePress} />;
                 })}
-
-                {/* Trendy Movies  */}
-                {/* <Carousel title='Trending Movies' data={data.results} onPress={handlePress} /> */}
-                {/* On Air Today  */}
-                {/* <Carousel title='On Air Today' data={data.results} onPress={handlePress} /> */}
             </CarouselGrid>
         </ScrollView>
     </SafeAreaView>);
