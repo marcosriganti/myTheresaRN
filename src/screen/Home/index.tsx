@@ -4,18 +4,26 @@ import {
     ScrollView,
     useColorScheme,
     View,
+    Text,
 } from 'react-native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {
     Colors,
 } from 'react-native/Libraries/NewAppScreen';
+import styled from 'styled-components';
+
 import Carousel from '../../components/Carousel';
 import {Record} from '../../components/Carousel/types';
-import styled from 'styled-components';
-import {RootStackParamList} from '../../types';
-type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
+import {useGetMovieByCategoryQuery} from '../../services/movies';
 
-const categories = [
+import {RootStackParamList} from '../../types';
+
+type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
+interface Category {
+    id: number;
+    name: string;
+}
+const categories: Category[] = [
     {
         "id": 16,
         "name": "Animation"
@@ -465,6 +473,24 @@ const CarouselGrid = styled(View)`
   margin: 16px 0;
 `;
 
+const Movies = (props: {category: Category; handlePress: any;}) => {
+    const {category, handlePress} = props;
+    const {data: movies, error, isLoading} = useGetMovieByCategoryQuery(category.id.toString());
+    console.log('useGetMovieByCategoryQuery', movies, error, isLoading);
+
+    // return movies;
+    if (isLoading) {
+        return <Text>Loading movies for ${category.name}...</Text>;
+    }
+    if (movies?.results.length === 0 || !movies) {
+        return <Text>No movies found for ${category.name}</Text>;
+    }
+    return <Carousel
+        title={`Films of ${category.name}`}
+        data={movies.results}
+        key={`category-${category.id}`}
+        onPress={handlePress} />;
+};
 
 const HomeScreen = (props: Props) => {
     const {navigation} = props;
@@ -482,11 +508,7 @@ const HomeScreen = (props: Props) => {
             <CarouselGrid>
                 {/* Trending TV  */}
                 {categories.map((category) => {
-                    return <Carousel
-                        title={`Films of ${category.name}`}
-                        data={data.results}
-                        key={`category-${category.id}`}
-                        onPress={handlePress} />;
+                    return <Movies category={category} handlePress={handlePress} />;
                 })}
             </CarouselGrid>
         </ScrollView>
