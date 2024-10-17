@@ -4,7 +4,7 @@ import {
     useColorScheme,
     View,
 } from 'react-native';
-import {CarouselItem, CarouselTitle, ItemTitle, StyledShadow, StyledImage} from './styles';
+import {CarouselItem, CarouselTitle, ItemTitle, StyledShadow, StyledImage, EmptyData} from './styles';
 
 import {Record} from '../../types';
 
@@ -19,9 +19,11 @@ const Carousel = ({title, data, onPress}: CarouselProps) => {
     return <View>
         <CarouselTitle>{title}</CarouselTitle>
         <View>
+            {data.length === 0 && <EmptyData>No films to display in here</EmptyData>}
             <ScrollView horizontal={true}>
+
                 {data.map((item) => {
-                    return <StyledShadow>
+                    return <StyledShadow isDark={isDarkMode}>
                         <CarouselItem isDark={isDarkMode} key={item.id} onPress={() => onPress(item)}>
                             <ItemTitle>{item.name || item.original_title}</ItemTitle>
                             <StyledImage source={{

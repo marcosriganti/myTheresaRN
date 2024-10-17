@@ -1,4 +1,5 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
 import {
     SafeAreaView,
     ScrollView,
@@ -14,7 +15,7 @@ import styled from 'styled-components';
 
 import Carousel from '../../components/Carousel';
 import {useGetMovieByCategoryQuery} from '../../services/movies';
-
+import {selectWatchlist} from '../../services/watchlist';
 import {RootStackParamList, Category, Record} from '../../types';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
@@ -62,26 +63,25 @@ const Movies = (props: {category: Category; handlePress: any;}) => {
 
 const HomeScreen = (props: Props) => {
     const {navigation} = props;
+    const watchListData = useSelector(selectWatchlist);
     const isDarkMode = useColorScheme() === 'dark';
     const backgroundStyle = {
         backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
         paddingVertical: 16,
     };
     const handlePress = (record: Record) => navigation.navigate('Details', record);
-
     return (<SafeAreaView style={backgroundStyle}>
         <ScrollView
             contentInsetAdjustmentBehavior="automatic"
             style={backgroundStyle}>
             <CarouselGrid>
-                {/* Trending TV  */}
                 {categories.map((category) => {
                     return <Movies category={category} handlePress={handlePress} />;
                 })}
                 {/* Watch list */}
                 <Carousel
                     title={'Your Watch List'}
-                    data={[]}
+                    data={watchListData}
                     key={'watchlist'}
                     onPress={handlePress} />
             </CarouselGrid>

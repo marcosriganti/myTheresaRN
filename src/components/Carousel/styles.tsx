@@ -33,9 +33,15 @@ const ItemTitle = styled(CarouselTitle)`
     z-index: 2;
     width: 100%;
 `;
-const StyledShadow = styled(View)`
+const EmptyData = styled(Text)`
+    padding: 16px;
+    font-size: 12px;
+    
+`;
+const StyledShadow = styled(View) <{isDark?: boolean;}>`
     border-radius: 8px;
     margin: 10px;
+    background-color: ${props => !props.isDark ? Colors.lighter : Colors.darker};
     shadow-color: ${props => !props.isDark ? '#000' : '#CCC'};
     shadow-offset: {
         width: 0;
@@ -68,4 +74,5 @@ export {
     CarouselItem,
     StyledShadow,
     StyledImage,
+    EmptyData,
 };

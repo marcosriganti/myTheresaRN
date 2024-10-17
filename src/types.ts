@@ -21,10 +21,10 @@ export type Record = {
     vote_count: number;
 };
 export interface queryResult {
-    "page": number,
-    "results": Record[],
-    "total_pages": number,
-    "total_results": number;
+    'page': number,
+    'results': Record[],
+    'total_pages': number,
+    'total_results': number;
 }
 
 export type RootStackParamList = {
