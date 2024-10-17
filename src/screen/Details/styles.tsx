@@ -26,6 +26,10 @@ const Content = styled(View)`
     flex: 3;
     gap: 16px;
 `;
+const SideContent = styled(View)`
+    flex: 1; 
+    gap: 16px
+`;
 const StyledImage = styled(Image)`
     flex: 2;
     width: 100%;
@@ -46,4 +50,5 @@ export {
     Content,
     StyledImage,
     StyleCopy,
+    SideContent,
 };

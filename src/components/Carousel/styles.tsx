@@ -1,7 +1,8 @@
 import {
     Text,
     Pressable,
-    View
+    Image,
+    View,
 } from 'react-native';
 import styled from 'styled-components';
 import {
@@ -55,10 +56,16 @@ const CarouselItem = styled(Pressable) <{isDark?: boolean;}>`
     position: relative;
     border-radius: 8px;
 `;
-
+const StyledImage = styled(Image)`
+    border-radius: 8px; 
+    resize-mode: cover;
+    width: 200px;
+    height: 350px;
+`;
 export {
     ItemTitle,
     CarouselTitle,
     CarouselItem,
-    StyledShadow
+    StyledShadow,
+    StyledImage,
 };

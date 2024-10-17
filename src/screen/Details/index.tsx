@@ -8,7 +8,7 @@ import {
     ScrollView,
 } from 'react-native';
 import Button from '../../components/Button';
-import {StyleCopy, StyledHeaderWrapper, StyledHeader, Content, StyledImage} from './styles';
+import {StyleCopy, StyledHeaderWrapper, StyledHeader, Content, StyledImage, SideContent} from './styles';
 import {DetailsScreenProps} from './types';
 
 const DetailsScreen = (props: DetailsScreenProps) => {
@@ -17,11 +17,12 @@ const DetailsScreen = (props: DetailsScreenProps) => {
     const isDarkMode = useColorScheme() === 'dark';
     const backgroundStyle = {
         backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-        paddingVertical: 16
+        paddingVertical: 16,
     };
     const handleListPress = () => {
 
     };
+
 
     return <SafeAreaView style={backgroundStyle}>
         <ScrollView
@@ -35,10 +36,10 @@ const DetailsScreen = (props: DetailsScreenProps) => {
                     <StyledImage source={{
                         uri: `https://image.tmdb.org/t/p/w500${poster_path}`,
                     }} />
-                    <View style={{flex: 1, gap: 16}}>
+                    <SideContent>
                         <StyleCopy>{`Release Date: ${release_date} \nRate: ${vote_average}/5`}</StyleCopy>
-                        <Button onPress={handleListPress} type='primary' > Add to list</Button>
-                    </View>
+                        <Button onPress={handleListPress} type="primary"> Add to list</Button>
+                    </SideContent>
                 </Content>
                 <Content>
                     <StyleCopy>

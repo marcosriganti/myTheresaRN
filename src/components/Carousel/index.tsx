@@ -1,12 +1,18 @@
 import React from 'react';
 import {
     ScrollView,
-    Image,
     useColorScheme,
     View,
 } from 'react-native';
-import {CarouselItem, CarouselTitle, ItemTitle, StyledShadow} from './styles';
-import {CarouselProps} from './types';
+import {CarouselItem, CarouselTitle, ItemTitle, StyledShadow, StyledImage} from './styles';
+
+import {Record} from '../../types';
+
+interface CarouselProps {
+    title: string;
+    data: Record[];
+    onPress: (item: Record) => void;
+}
 
 const Carousel = ({title, data, onPress}: CarouselProps) => {
     const isDarkMode = useColorScheme() === 'dark';
@@ -18,9 +24,9 @@ const Carousel = ({title, data, onPress}: CarouselProps) => {
                     return <StyledShadow>
                         <CarouselItem isDark={isDarkMode} key={item.id} onPress={() => onPress(item)}>
                             <ItemTitle>{item.name || item.original_title}</ItemTitle>
-                            <Image source={{
+                            <StyledImage source={{
                                 uri: `https://image.tmdb.org/t/p/w300${item.poster_path}`,
-                            }} width={200} height={350} style={{borderRadius: 8, resizeMode: 'cover'}} />
+                            }} />
                         </CarouselItem>
                     </StyledShadow>;
                 })}
