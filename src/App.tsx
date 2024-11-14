@@ -13,10 +13,10 @@ import {RootStackParamList} from './types';
 const headerTitle = (): React.ReactElement => <Image source={require('./assets/logo.png')} style={{width: 150, height: 18}} />;
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
+
 function App(): React.JSX.Element {
   return <NavigationContainer>
     <Stack.Navigator initialRouteName="Home" screenOptions={{
-
       headerStyle: {
         backgroundColor: '#1d2bb2',
       },
