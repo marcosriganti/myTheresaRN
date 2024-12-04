@@ -36,5 +36,20 @@ const Carousel = ({title, data, onPress}: CarouselProps) => {
         </View>
     </View >;
 };
-
+export const Skeleton = () => {
+    return <View>
+        <CarouselTitle>Loading...</CarouselTitle>
+        <View>
+            <ScrollView horizontal={true}>
+                {[1, 2, 3, 4, 5].map((item) => {
+                    return <StyledShadow>
+                        <CarouselItem key={item}>
+                            {/* something */}
+                        </CarouselItem>
+                    </StyledShadow>;
+                })}
+            </ScrollView>
+        </View>
+    </View>;
+};
 export default Carousel;

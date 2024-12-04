@@ -13,10 +13,15 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import styled from 'styled-components';
 
-import Carousel from '../../components/Carousel';
-import {useGetMovieByCategoryQuery} from '../../services/movies';
-import {selectWatchlist} from '../../services/watchlist';
-import {RootStackParamList, Category, Record} from '../../types';
+import Carousel from '@components/Carousel';
+import {useGetMovieByCategoryQuery} from '@services/movies';
+import {selectWatchlist} from '@services/watchlist';
+import {
+    RootStackParamList,
+    Category,
+    MoviesProps,
+    Record
+} from '../../types';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
@@ -35,18 +40,22 @@ const categories: Category[] = [
     },
 
 ];
-
+// Move to styles
 const CarouselGrid = styled(View)`
   display: flex;
   gap: 24px;
   margin: 16px 0;
 `;
 
-const Movies = (props: {category: Category; handlePress: any;}) => {
+
+
+const Movies = (props: MoviesProps) => {
     const {category, handlePress} = props;
     const {data: movies, error, isLoading} = useGetMovieByCategoryQuery(category.id.toString());
     if (isLoading) {
         return <Text>Loading movies for ${category.name}...</Text>;
+        // Skeleton loading
+
     }
     if (movies?.results.length === 0 || !movies) {
         return <Text>No movies found for ${category.name}</Text>;
@@ -54,6 +63,7 @@ const Movies = (props: {category: Category; handlePress: any;}) => {
     if (error) {
         return <Text>Error loading movies for ${category.name}: ${JSON.stringify(error)}</Text>;
     }
+
     return <Carousel
         title={`Films of ${category.name}`}
         data={movies.results}

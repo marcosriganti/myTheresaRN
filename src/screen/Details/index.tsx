@@ -8,8 +8,8 @@ import {
     useColorScheme,
     ScrollView,
 } from 'react-native';
-import {selectWatchlist} from '../../services/watchlist';
-import Button from '../../components/Button';
+import {selectWatchlist} from '@services/watchlist';
+import Button from '@components/Button';
 import {StyleCopy, StyledHeaderWrapper, StyledHeader, Content, StyledImage, SideContent} from './styles';
 import {DetailsScreenProps} from './types';
 

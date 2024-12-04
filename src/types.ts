@@ -31,3 +31,8 @@ export type RootStackParamList = {
     Home: undefined;
     Details: Record;
 };
+
+export interface MoviesProps {
+    category: Category;
+    handlePress: (record: Record) => void;
+};
