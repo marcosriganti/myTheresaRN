@@ -1,26 +1,30 @@
 
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {
     View,
     SafeAreaView,
-    useColorScheme,
     ScrollView,
+    Dimensions,
 } from 'react-native';
-import {selectWatchlist} from '@services/watchlist';
-import Button from '@components/Button';
+import {selectWatchlist} from '../../services/watchlist';
+import Button from '../../components/Button';
 import {StyleCopy, StyledHeaderWrapper, StyledHeader, Content, StyledImage, SideContent} from './styles';
 import {DetailsScreenProps} from './types';
+import {hexToRgb} from '../../utils';
 
 const DetailsScreen = (props: DetailsScreenProps) => {
-    const record = props.route.params;
+    const {record, category} = props.route.params;
     const {name, original_title, poster_path, overview, release_date, vote_average, id} = record;
+
     const dispatch = useDispatch();
-    const isDarkMode = useColorScheme() === 'dark';
+    // const bgColor = hexToRgb(category.backgroundColor || Colors.darker)?.map(n => Math.floor(n * .75));
     const backgroundStyle = {
-        backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+        backgroundColor: '#0B1E32',
         paddingVertical: 16,
+        borderTopWidth: 3,
+        borderTopColor: category.backgroundColor,
+        height: Dimensions.get('window').height,
     };
 
     const watchListData = useSelector(selectWatchlist);
@@ -34,18 +38,21 @@ const DetailsScreen = (props: DetailsScreenProps) => {
     return <SafeAreaView style={backgroundStyle}>
         <ScrollView
             contentInsetAdjustmentBehavior="automatic"
-            style={backgroundStyle}>
+        >
             <View>
                 <StyledHeaderWrapper>
-                    <StyledHeader>{name || original_title}</StyledHeader>
+                    <StyledHeader style={{color: `${category?.backgroundColor || 'white'}`}}>{name || original_title}</StyledHeader>
                 </StyledHeaderWrapper>
                 <Content>
                     <StyledImage source={{
                         uri: `https://image.tmdb.org/t/p/w500${poster_path}`,
                     }} />
                     <SideContent>
-                        <StyleCopy>{`Release Date: ${release_date} \nRate: ${vote_average}/5`}</StyleCopy>
-                        <Button onPress={handleListPress} type="primary">{label}</Button>
+                        <StyleCopy>{`Release Date: ${release_date}`}</StyleCopy>
+                        <StyleCopy>Rate: {Math.round(vote_average * 100) / 100}</StyleCopy>
+                        <Button onPress={handleListPress} type="primary" style={{
+                            backgroundColor: `${category?.backgroundColor || '#1d2bb2'}`,
+                        }}>{label}</Button>
                     </SideContent>
                 </Content>
                 <Content>

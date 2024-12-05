@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Carousel renders correctly 1`] = `
+<View>
+  <Text
+    className="sc-gtLWhw extFkf"
+  >
+    Test Carousel
+  </Text>
+  <View>
+    <RCTScrollView
+      horizontal={true}
+    >
+      <View>
+        <View
+          className="sc-ivxoEo iMwyCZ"
+          isDark={false}
+        >
+          <View
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            className="sc-ghWlax edfImK"
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+          >
+            <View
+              borderColor="#FF0000"
+              className="sc-blHHSb Szlbs"
+            >
+              <Text
+                className="sc-gtLWhw sc-egkSDF extFkf bIgjLZ"
+              >
+                Movie 1
+              </Text>
+            </View>
+            <Image
+              className="sc-kLhKbu ZsPEz"
+              source={
+                {
+                  "uri": "https://image.tmdb.org/t/p/w300/path1.jpg",
+                }
+              }
+            />
+          </View>
+        </View>
+        <View
+          className="sc-ivxoEo iMwyCZ"
+          isDark={false}
+        >
+          <View
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            className="sc-ghWlax edfImK"
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+          >
+            <View
+              borderColor="#FF0000"
+              className="sc-blHHSb Szlbs"
+            >
+              <Text
+                className="sc-gtLWhw sc-egkSDF extFkf bIgjLZ"
+              >
+                Movie 2
+              </Text>
+            </View>
+            <Image
+              className="sc-kLhKbu ZsPEz"
+              source={
+                {
+                  "uri": "https://image.tmdb.org/t/p/w300/path2.jpg",
+                }
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</View>
+`;

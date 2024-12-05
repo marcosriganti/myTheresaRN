@@ -7,7 +7,6 @@ import {
 import styled from 'styled-components';
 
 const StyledHeaderWrapper = styled(View)`
-    background-color: pink;
     width: auto;
     display: flex;
     padding-left: 16px;
@@ -15,9 +14,10 @@ const StyledHeaderWrapper = styled(View)`
     padding-bottom: 8px;
 `;
 const StyledHeader = styled(Text)`
-    font-size: 18px;
+    font-size: 24px;
+    font-weight: bold;
+    font-style: italic;
 `;
-
 const Content = styled(View)`
     display: flex;
     flex-direction: row;
@@ -30,6 +30,7 @@ const SideContent = styled(View)`
     flex: 1; 
     gap: 16px
 `;
+
 const StyledImage = styled(Image)`
     flex: 2;
     width: 100%;
@@ -40,7 +41,7 @@ const StyledImage = styled(Image)`
 
 const StyleCopy = styled(Text)`
     font-size: 14px;
-    color: #333;
+    color: white;
     line-height: 20px;
 `;
 

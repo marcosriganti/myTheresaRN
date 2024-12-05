@@ -4,87 +4,66 @@ import {
     SafeAreaView,
     ScrollView,
     useColorScheme,
-    View,
-    Text,
 } from 'react-native';
-import type {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {
-    Colors,
-} from 'react-native/Libraries/NewAppScreen';
-import styled from 'styled-components';
 
-import Carousel from '@components/Carousel';
-import {useGetMovieByCategoryQuery} from '@services/movies';
-import {selectWatchlist} from '@services/watchlist';
+import Carousel, {Skeleton} from '../../components/Carousel';
+import {useGetMovieByCategoryQuery} from '../../services/movies';
+import {selectWatchlist} from '../../services/watchlist';
 import {
     RootStackParamList,
-    Category,
     MoviesProps,
-    Record
+    Record,
+    Category
 } from '../../types';
+import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {CarouselGrid, ErrorMessage} from './styles';
+import {categories} from '../../utils';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
-
-const categories: Category[] = [
-    {
-        'id': 16,
-        'name': 'Animation',
-    },
-    {
-        'id': 878,
-        'name': 'Science Fiction',
-    },
-    {
-        'id': 53,
-        'name': 'Thriller',
-    },
-
-];
-// Move to styles
-const CarouselGrid = styled(View)`
-  display: flex;
-  gap: 24px;
-  margin: 16px 0;
-`;
-
 
 
 const Movies = (props: MoviesProps) => {
     const {category, handlePress} = props;
+    // Query per category
     const {data: movies, error, isLoading} = useGetMovieByCategoryQuery(category.id.toString());
     if (isLoading) {
-        return <Text>Loading movies for ${category.name}...</Text>;
-        // Skeleton loading
-
+        return <Skeleton title={category.name} />;
     }
     if (movies?.results.length === 0 || !movies) {
-        return <Text>No movies found for ${category.name}</Text>;
+        return <ErrorMessage>No movies found for {category.name}</ErrorMessage>;
     }
     if (error) {
-        return <Text>Error loading movies for ${category.name}: ${JSON.stringify(error)}</Text>;
+        return <ErrorMessage>Error loading movies for {category.name}: {JSON.stringify(error)}</ErrorMessage>;
     }
 
     return <Carousel
         title={`Films of ${category.name}`}
         data={movies.results}
         key={`category-${category.id}`}
+        category={category}
         onPress={handlePress} />;
 };
 
 const HomeScreen = (props: Props) => {
     const {navigation} = props;
+    // getting the watchlist data
     const watchListData = useSelector(selectWatchlist);
-    const isDarkMode = useColorScheme() === 'dark';
     const backgroundStyle = {
-        backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+        backgroundColor: '#0B1E32',
         paddingVertical: 16,
     };
-    const handlePress = (record: Record) => navigation.navigate('Details', record);
+
+    const handlePress = (record: Record, category: Category) => navigation.navigate('Details', {
+        record,
+        category,
+    });
+
     return (<SafeAreaView style={backgroundStyle}>
         <ScrollView
             contentInsetAdjustmentBehavior="automatic"
             style={backgroundStyle}>
             <CarouselGrid>
+                {/* Each Carousel */}
                 {categories.map((category) => {
                     return <Movies category={category} handlePress={handlePress} />;
                 })}
@@ -93,6 +72,7 @@ const HomeScreen = (props: Props) => {
                     title={'Your Watch List'}
                     data={watchListData}
                     key={'watchlist'}
+                    category={{id: 0, name: 'Watch List', backgroundColor: '#1d2bb2'}}
                     onPress={handlePress} />
             </CarouselGrid>
         </ScrollView>

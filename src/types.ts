@@ -1,11 +1,12 @@
 export interface Category {
     id: number;
     name: string;
+    backgroundColor?: string;
 }
 export type Record = {
     name?: string;
     backdrop_path: string;
-    id: number;
+    id: number | string;
     title: string;
     original_title: string;
     overview: string;
@@ -29,10 +30,13 @@ export interface queryResult {
 
 export type RootStackParamList = {
     Home: undefined;
-    Details: Record;
+    Details: {
+        record: Record,
+        category: Category;
+    };
 };
 
 export interface MoviesProps {
     category: Category;
-    handlePress: (record: Record) => void;
+    handlePress: (record: Record, category: Category) => void;
 };

@@ -5,43 +5,53 @@ import {
     View,
 } from 'react-native';
 import styled from 'styled-components';
-import {
-    Colors,
-} from 'react-native/Libraries/NewAppScreen';
 
-const CarouselTitle = styled(Text) <{isDark?: boolean;}>`
-    font-size: 24px;
-    color: ${props => !props.isDark ? Colors.dark : Colors.light};
-    text-transform: uppercase;
-    letter-spacing: -1px;
+const RADIUS = '16px';
+
+const ItemTitleWrapper = styled(View) <{borderColor?: string;}>`
+    background-color: rgba(0,0,0,0.5);
+    border-bottom-color: ${props => props.borderColor ? props.borderColor : '#0B1E32'};
+    border-bottom-width: 3;
+    position: absolute;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    text-align: center;
+`;
+const CarouselTitle = styled(Text)`
+    font-size: 16px;
+    color: white;
     font-weight: bold;
     font-style: italic;
-    padding-left: 16px;
+    padding-left: 8px;
+    padding-right: 8px;
 `;
 const ItemTitle = styled(CarouselTitle)`
     font-size: 16px;
-    position: absolute;
-    top: 0;
-    left: 0;
     color: #fff;
-    text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
-    background-color: rgba(0,0,0,0.5);
     padding-top: 8px;
     padding-bottom: 8px;
-    border-radius: 8px;
     overflow: hidden;
-    z-index: 2;
-    width: 100%;
+    text-align: center;
 `;
-const EmptyData = styled(Text)`
-    padding: 16px;
+const EmptyDataText = styled(Text)`
     font-size: 12px;
+    font-weight: bold;
+    font-style: italic;
+    color: white;
+
+`;
+const EmptyData = styled(View)`
+    padding: 16px;
+    background-color: rgba(0,0,0,0.5);
+    margin:  16px;
+    border-radius: ${RADIUS};
     
 `;
 const StyledShadow = styled(View) <{isDark?: boolean;}>`
-    border-radius: 8px;
+    border-radius: ${RADIUS};
     margin: 10px;
-    background-color: ${props => !props.isDark ? Colors.lighter : Colors.darker};
+    background-color: rgba(0,0,0,0.5);
     shadow-color: ${props => !props.isDark ? '#000' : '#CCC'};
     shadow-offset: {
         width: 0;
@@ -51,16 +61,14 @@ const StyledShadow = styled(View) <{isDark?: boolean;}>`
     shadow-radius: 4.65px;
     elevation: 4;
 `;
-const CarouselItem = styled(Pressable) <{isDark?: boolean;}>`
-    background-color: ${props => !props.isDark ? Colors.lighter : Colors.darker};
-    border-color: rgba(255,255,255, 0.1);
+const CarouselItem = styled(Pressable)`
     border-style: "solid";
     border-width: 1px;
     width: 200px; 
     height: 350px;
     overflow: hidden;
     position: relative;
-    border-radius: 8px;
+    border-radius: ${RADIUS};
 `;
 const StyledImage = styled(Image)`
     border-radius: 8px; 
@@ -75,4 +83,6 @@ export {
     StyledShadow,
     StyledImage,
     EmptyData,
+    ItemTitleWrapper,
+    EmptyDataText,
 };

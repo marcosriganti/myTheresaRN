@@ -2,10 +2,8 @@ import {configureStore} from '@reduxjs/toolkit';
 import {setupListeners} from '@reduxjs/toolkit/query/react';
 import {movieApi} from './services/movies';
 import {watchlistSlice} from './services/watchlist';
-
 export const store = configureStore({
     reducer: {
-        // Add the generated reducer as a specific top-level slice
         [movieApi.reducerPath]: movieApi.reducer,
         watchlist: watchlistSlice.reducer,
 
