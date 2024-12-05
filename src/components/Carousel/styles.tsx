@@ -11,7 +11,7 @@ const RADIUS = '16px';
 const ItemTitleWrapper = styled(View) <{borderColor?: string;}>`
     background-color: rgba(0,0,0,0.5);
     border-bottom-color: ${props => props.borderColor ? props.borderColor : '#0B1E32'};
-    border-bottom-width: 3;
+    border-bottom-width: 3px;
     position: absolute;
     left: 0;
     z-index: 2;
@@ -52,6 +52,7 @@ const StyledShadow = styled(View) <{isDark?: boolean;}>`
     border-radius: ${RADIUS};
     margin: 10px;
     background-color: rgba(0,0,0,0.5);
+    background-color: #0B1E32;
     shadow-color: ${props => !props.isDark ? '#000' : '#CCC'};
     shadow-offset: {
         width: 0;

@@ -60,11 +60,11 @@ const HomeScreen = (props: Props) => {
     return (<SafeAreaView style={backgroundStyle}>
         <ScrollView
             contentInsetAdjustmentBehavior="automatic"
-            style={backgroundStyle}>
+        >
             <CarouselGrid>
                 {/* Each Carousel */}
                 {categories.map((category) => {
-                    return <Movies category={category} handlePress={handlePress} />;
+                    return <Movies category={category} key={'movies' + category.id} handlePress={handlePress} />;
                 })}
                 {/* Watch list */}
                 <Carousel
