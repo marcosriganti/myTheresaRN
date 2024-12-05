@@ -1,7 +1,7 @@
 import 'react-native';
 import React from 'react';
 import Carousel from './index';
-import {render} from '@testing-library/react-native';
+import {render, screen} from '@testing-library/react-native';
 import {Record, Category} from '../../types';
 
 describe('Carousel', () => {
@@ -19,23 +19,23 @@ describe('Carousel', () => {
     const mockOnPress = jest.fn();
 
     it('renders correctly', () => {
-        const {toJSON} = render(<Carousel title="Test Carousel" data={mockData} category={mockCategory} onPress={mockOnPress} />);
-        expect(toJSON()).toMatchSnapshot();
+        render(<Carousel title="Test Carousel" data={mockData} category={mockCategory} onPress={mockOnPress} />);
+        expect(screen.toJSON()).toMatchSnapshot();
     });
 
     it('displays the title', () => {
-        const view = render(<Carousel title="Test Carousel" data={mockData} category={mockCategory} onPress={mockOnPress} />);
-        expect(view.getByText('Test Carousel')).toBeTruthy();
+        render(<Carousel title="Test Carousel" data={mockData} category={mockCategory} onPress={mockOnPress} />);
+        expect(screen.getByText('Test Carousel')).toBeTruthy();
     });
 
     it('displays empty data text when data is empty', () => {
-        const view = render(<Carousel title="Test Carousel" data={[]} category={mockCategory} onPress={mockOnPress} />);
-        expect(view.getByText('No films to display in here')).toBeTruthy();
+        render(<Carousel title="Test Carousel" data={[]} category={mockCategory} onPress={mockOnPress} />);
+        expect(screen.getByText('No films to display in here')).toBeTruthy();
     });
 
     it('displays items when data is provided', () => {
-        const view = render(<Carousel title="Test Carousel" data={mockData} category={mockCategory} onPress={mockOnPress} />);
-        expect(view.getByText('Movie 1')).toBeTruthy();
-        expect(view.getByText('Movie 2')).toBeTruthy();
+        render(<Carousel title="Test Carousel" data={mockData} category={mockCategory} onPress={mockOnPress} />);
+        expect(screen.getByText('Movie 1')).toBeTruthy();
+        expect(screen.getByText('Movie 2')).toBeTruthy();
     });
 });
