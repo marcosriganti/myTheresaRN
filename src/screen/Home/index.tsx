@@ -3,7 +3,6 @@ import {useSelector} from 'react-redux';
 import {
     SafeAreaView,
     ScrollView,
-    useColorScheme,
 } from 'react-native';
 
 import Carousel, {Skeleton} from '../../components/Carousel';
@@ -13,7 +12,7 @@ import {
     RootStackParamList,
     MoviesProps,
     Record,
-    Category
+    Category,
 } from '../../types';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {CarouselGrid, ErrorMessage} from './styles';

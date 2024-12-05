@@ -8,19 +8,19 @@ import {fireEvent} from '@testing-library/react-native';
 
 describe('Button', () => {
     it('renders correctly', () => {
-        const {toJSON} = render(<Button>Test Button</Button>);
-        expect(toJSON()).toMatchSnapshot();
+        const view = render(<Button>Test Button</Button>);
+        expect(view.toJSON()).toMatchSnapshot();
     });
 
     it('displays the correct text', () => {
-        const {getByText} = render(<Button>Test Button</Button>);
-        expect(getByText('Test Button')).toBeTruthy();
+        const view = render(<Button>Test Button</Button>);
+        expect(view.getByText('Test Button')).toBeTruthy();
     });
 
     it('handles press events', () => {
         const mockOnPress = jest.fn();
-        const {getByText} = render(<Button onPress={mockOnPress}>Test Button</Button>);
-        fireEvent.press(getByText('Test Button'));
+        const view = render(<Button onPress={mockOnPress}>Test Button</Button>);
+        fireEvent.press(view.getByText('Test Button'));
         expect(mockOnPress).toHaveBeenCalled();
     });
 });

@@ -24,18 +24,18 @@ describe('Carousel', () => {
     });
 
     it('displays the title', () => {
-        const {getByText} = render(<Carousel title="Test Carousel" data={mockData} category={mockCategory} onPress={mockOnPress} />);
-        expect(getByText('Test Carousel')).toBeTruthy();
+        const view = render(<Carousel title="Test Carousel" data={mockData} category={mockCategory} onPress={mockOnPress} />);
+        expect(view.getByText('Test Carousel')).toBeTruthy();
     });
 
     it('displays empty data text when data is empty', () => {
-        const {getByText} = render(<Carousel title="Test Carousel" data={[]} category={mockCategory} onPress={mockOnPress} />);
-        expect(getByText('No films to display in here')).toBeTruthy();
+        const view = render(<Carousel title="Test Carousel" data={[]} category={mockCategory} onPress={mockOnPress} />);
+        expect(view.getByText('No films to display in here')).toBeTruthy();
     });
 
     it('displays items when data is provided', () => {
-        const {getByText} = render(<Carousel title="Test Carousel" data={mockData} category={mockCategory} onPress={mockOnPress} />);
-        expect(getByText('Movie 1')).toBeTruthy();
-        expect(getByText('Movie 2')).toBeTruthy();
+        const view = render(<Carousel title="Test Carousel" data={mockData} category={mockCategory} onPress={mockOnPress} />);
+        expect(view.getByText('Movie 1')).toBeTruthy();
+        expect(view.getByText('Movie 2')).toBeTruthy();
     });
 });

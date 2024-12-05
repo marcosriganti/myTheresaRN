@@ -11,7 +11,6 @@ import {selectWatchlist} from '../../services/watchlist';
 import Button from '../../components/Button';
 import {StyleCopy, StyledHeaderWrapper, StyledHeader, Content, StyledImage, SideContent} from './styles';
 import {DetailsScreenProps} from './types';
-import {hexToRgb} from '../../utils';
 
 const DetailsScreen = (props: DetailsScreenProps) => {
     const {record, category} = props.route.params;

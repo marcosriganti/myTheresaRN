@@ -1,4 +1,4 @@
-import {PressableProps} from "react-native";
+import {PressableProps} from 'react-native';
 type ButtonType = 'primary' | 'secondary' | 'tertiary';
 interface ButtonProps extends PressableProps {
     type?: ButtonType;

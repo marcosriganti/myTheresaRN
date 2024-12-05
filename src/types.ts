@@ -39,4 +39,4 @@ export type RootStackParamList = {
 export interface MoviesProps {
     category: Category;
     handlePress: (record: Record, category: Category) => void;
-};
+}
