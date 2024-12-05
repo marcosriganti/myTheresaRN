@@ -1,0 +1,17 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/BebasNeueRegular.ttf",
+      "sha1": "8b3aaeb978f3cb5f575860774b50c332338563c1"
+    },
+    {
+      "path": "src/assets/fonts/MontserratRegular.ttf",
+      "sha1": "1c8119b38eef1914a4fbd9f6cfdedf198445ab97"
+    },
+    {
+      "path": "src/assets/fonts/PlaywriteHRLijevaRegular.ttf",
+      "sha1": "455e01a35191b56f712665a29290a7124a30d463"
+    }
+  ]
+}
