@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 
 import styled from 'styled-components';
+import {fontFamilies} from '../../constants/fonts';
 
 const StyledHeaderWrapper = styled(View)`
     width: auto;
@@ -13,10 +14,10 @@ const StyledHeaderWrapper = styled(View)`
     padding-top: 8px;
     padding-bottom: 8px;
 `;
-const StyledHeader = styled(Text)`
+const StyledHeader = styled(Text) <{color?: string, font?: string;}>`
     font-size: 24px;
-    font-weight: bold;
-    font-style: italic;
+    font-family: ${props => props.font ? props.font : fontFamilies.MONTSERRAT.normal};
+    color: ${props => props.color ? props.color : '#FFF'};
 `;
 const Content = styled(View)`
     display: flex;

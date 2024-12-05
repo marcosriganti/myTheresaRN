@@ -49,15 +49,9 @@
 	<false/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>MontserratBlack.ttf</string>
-		<string>MontserratBlackItalic.ttf</string>
-		<string>MontserratBold.ttf</string>
-		<string>MontserratItalic.ttf</string>
-		<string>MontserratMedium.ttf</string>
-		<string>MontserratMediumItalic.ttf</string>
 		<string>MontserratRegular.ttf</string>
-		<string>MontserratSemiBold.ttf</string>
-		<string>MontserratSemiBoldItalic.ttf</string>
+		<string>PlaywriteHRLijevaRegular.ttf</string>
+		<string>BebasNeueRegular.ttf</string>
 	</array>
 </dict>
 </plist>

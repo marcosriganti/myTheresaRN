@@ -15,9 +15,7 @@ import {DetailsScreenProps} from './types';
 const DetailsScreen = (props: DetailsScreenProps) => {
     const {record, category} = props.route.params;
     const {name, original_title, poster_path, overview, release_date, vote_average, id} = record;
-
     const dispatch = useDispatch();
-    // const bgColor = hexToRgb(category.backgroundColor || Colors.darker)?.map(n => Math.floor(n * .75));
     const backgroundStyle = {
         backgroundColor: '#0B1E32',
         paddingVertical: 16,
@@ -33,14 +31,15 @@ const DetailsScreen = (props: DetailsScreenProps) => {
     const handleListPress = () => {
         inListData ? dispatch({type: 'watchlist/removeRecord', payload: record}) : dispatch({type: 'watchlist/addRecord', payload: record});
     };
-
+    const color = category?.backgroundColor || 'white';
+    const font = category.fontFamily;
     return <SafeAreaView style={backgroundStyle}>
         <ScrollView
             contentInsetAdjustmentBehavior="automatic"
         >
             <View>
                 <StyledHeaderWrapper>
-                    <StyledHeader style={{color: `${category?.backgroundColor || 'white'}`}}>{name || original_title}</StyledHeader>
+                    <StyledHeader color={color} font={font}>{name || original_title}</StyledHeader>
                 </StyledHeaderWrapper>
                 <Content>
                     <StyledImage source={{

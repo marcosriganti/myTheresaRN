@@ -2,6 +2,7 @@ export interface Category {
     id: number;
     name: string;
     backgroundColor?: string;
+    fontFamily?: string;
 }
 export type Record = {
     name?: string;
