@@ -50,6 +50,8 @@ const HomeScreen = (props: Props) => {
     const backgroundStyle = {
         backgroundColor: '#0B1E32',
         paddingVertical: 16,
+        borderTopWidth: 3,
+        borderTopColor: '#FFF',
     };
 
     const handlePress = (record: Record, category: Category) => navigation.navigate('Details', {

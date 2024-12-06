@@ -11,6 +11,7 @@ import {selectWatchlist} from '../../services/watchlist';
 import Button from '../../components/Button';
 import {StyleCopy, StyledHeaderWrapper, StyledHeader, Content, StyledImage, SideContent} from './styles';
 import {DetailsScreenProps} from './types';
+import {hexToRgb} from '../../utils';
 
 const DetailsScreen = (props: DetailsScreenProps) => {
     const {record, category} = props.route.params;
@@ -26,13 +27,22 @@ const DetailsScreen = (props: DetailsScreenProps) => {
 
     const watchListData = useSelector(selectWatchlist);
     const inListData = watchListData.find(r => r.id === id);
-    const label = inListData ? 'Remove' : 'Add';
+
 
     const handleListPress = () => {
         inListData ? dispatch({type: 'watchlist/removeRecord', payload: record}) : dispatch({type: 'watchlist/addRecord', payload: record});
     };
+    let label = 'Add';
+    let buttonBg = category?.backgroundColor || '#1d2bb2';
+
     const color = category?.backgroundColor || 'white';
     const font = category.fontFamily;
+    if (inListData) {
+        label = 'Remove';
+        buttonBg = `rgb(${hexToRgb(category.backgroundColor || '#1d2bb2')?.map(n => n * 0.5)?.join(',')})`;
+    }
+
+
     return <SafeAreaView style={backgroundStyle}>
         <ScrollView
             contentInsetAdjustmentBehavior="automatic"
@@ -48,9 +58,7 @@ const DetailsScreen = (props: DetailsScreenProps) => {
                     <SideContent>
                         <StyleCopy>{`Release Date: ${release_date}`}</StyleCopy>
                         <StyleCopy>Rate: {Math.round(vote_average * 100) / 100}</StyleCopy>
-                        <Button onPress={handleListPress} type="primary" style={{
-                            backgroundColor: `${category?.backgroundColor || '#1d2bb2'}`,
-                        }}>{label}</Button>
+                        <Button onPress={handleListPress} type="primary" style={{backgroundColor: buttonBg}}>{label}</Button>
                     </SideContent>
                 </Content>
                 <Content>
