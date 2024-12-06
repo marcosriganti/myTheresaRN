@@ -6,8 +6,8 @@ import type {Record} from '../types';
 const initialState: {list: Record[];} = {
     list: [],
 };
-export const watchlistSlice = createSlice({
-    name: 'watchlist',
+export const wishlistSlice = createSlice({
+    name: 'wishlist',
     initialState,
     reducers: {
         addRecord: (state, action: PayloadAction<Record>) => {
@@ -23,6 +23,6 @@ export const watchlistSlice = createSlice({
         },
     },
 });
-export const {addRecord, removeRecord} = watchlistSlice.actions;
+export const {addRecord, removeRecord} = wishlistSlice.actions;
 
-export const selectWatchlist = (state: RootState) => state.watchlist.list;
+export const selectWishlist = (state: RootState) => state.wishlist.list;

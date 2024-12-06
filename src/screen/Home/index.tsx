@@ -7,7 +7,7 @@ import {
 
 import Carousel, {Skeleton} from '../../components/Carousel';
 import {useGetMovieByCategoryQuery} from '../../services/movies';
-import {selectWatchlist} from '../../services/watchlist';
+import {selectWishlist} from '../../services/wishlist';
 import {
     RootStackParamList,
     MoviesProps,
@@ -16,7 +16,8 @@ import {
 } from '../../types';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {CarouselGrid, ErrorMessage} from './styles';
-import {categories} from '../../utils';
+import {categories} from '../../constants/categories';
+import {APP_BG_COLOR, DEFAULT_BG_COLOR, DEFAULT_TEXT_COLOR} from '../../constants/colors';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
@@ -45,13 +46,14 @@ const Movies = (props: MoviesProps) => {
 
 const HomeScreen = (props: Props) => {
     const {navigation} = props;
-    // getting the watchlist data
-    const watchListData = useSelector(selectWatchlist);
+    // getting the wishlist data
+    const wishListData = useSelector(selectWishlist);
+
     const backgroundStyle = {
-        backgroundColor: '#0B1E32',
+        backgroundColor: APP_BG_COLOR,
         paddingVertical: 16,
         borderTopWidth: 3,
-        borderTopColor: '#FFF',
+        borderTopColor: DEFAULT_TEXT_COLOR,
     };
 
     const handlePress = (record: Record, category: Category) => navigation.navigate('Details', {
@@ -68,12 +70,12 @@ const HomeScreen = (props: Props) => {
                 {categories.map((category) => {
                     return <Movies category={category} key={'movies' + category.id} handlePress={handlePress} />;
                 })}
-                {/* Watch list */}
+                {/* Wish list */}
                 <Carousel
-                    title={'Your Watch List'}
-                    data={watchListData}
-                    key={'watchlist'}
-                    category={{id: 0, name: 'Watch List', backgroundColor: '#1d2bb2'}}
+                    title={'Your Wish List'}
+                    data={wishListData}
+                    key={'wishlist'}
+                    category={{id: 0, name: 'Wish List', backgroundColor: DEFAULT_BG_COLOR}}
                     onPress={handlePress} />
             </CarouselGrid>
         </ScrollView>

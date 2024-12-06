@@ -13,7 +13,7 @@ exports[`Carousel renders correctly 1`] = `
     >
       <View>
         <View
-          className="sc-ivxoEo iMwyCZ"
+          className="sc-ivxoEo cMwuUA"
           isDark={false}
         >
           <View
@@ -50,7 +50,7 @@ exports[`Carousel renders correctly 1`] = `
           >
             <View
               borderColor="#FF0000"
-              className="sc-blHHSb Szlbs"
+              className="sc-blHHSb RCrkM"
             >
               <Text
                 className="sc-gtLWhw sc-egkSDF extFkf bIgjLZ"
@@ -69,7 +69,7 @@ exports[`Carousel renders correctly 1`] = `
           </View>
         </View>
         <View
-          className="sc-ivxoEo iMwyCZ"
+          className="sc-ivxoEo cMwuUA"
           isDark={false}
         >
           <View
@@ -106,7 +106,7 @@ exports[`Carousel renders correctly 1`] = `
           >
             <View
               borderColor="#FF0000"
-              className="sc-blHHSb Szlbs"
+              className="sc-blHHSb RCrkM"
             >
               <Text
                 className="sc-gtLWhw sc-egkSDF extFkf bIgjLZ"

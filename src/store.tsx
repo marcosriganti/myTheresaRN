@@ -1,11 +1,12 @@
 import {configureStore} from '@reduxjs/toolkit';
 import {setupListeners} from '@reduxjs/toolkit/query/react';
 import {movieApi} from './services/movies';
-import {watchlistSlice} from './services/watchlist';
+import {wishlistSlice} from './services/wishlist';
+
 export const store = configureStore({
     reducer: {
         [movieApi.reducerPath]: movieApi.reducer,
-        watchlist: watchlistSlice.reducer,
+        wishlist: wishlistSlice.reducer,
 
     },
     // Adding the api middleware enables caching, invalidation, polling,
